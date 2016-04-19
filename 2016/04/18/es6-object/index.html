@@ -1,0 +1,118 @@
+<!DOCTYPE html><html lang="null"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>es6 object | yifeiCao's blog</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/3.0.3/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">es6 object</h1><a id="logo" href="/.">yifeiCao's blog</a><p class="description"></p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> Start</i></a><a href="/archives/"><i class="fa fa-archive"> Archiv</i></a><a href="/about/"><i class="fa fa-user"> Über</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">es6 object</h1><div class="post-meta">Apr 18, 2016<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><h2 id="属性的简洁表示法"><a href="#属性的简洁表示法" class="headerlink" title="属性的简洁表示法"></a>属性的简洁表示法</h2><p>es6允许你直接写入变量和函数，作为对象的属性和方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="string">'bar'</span>;</span><br><span class="line"><span class="keyword">var</span> baz = &#123;foo&#125;;</span><br><span class="line"><span class="comment">//等同于</span></span><br><span class="line"><span class="keyword">var</span> baz = &#123;foo: foo&#125;</span><br></pre></td></tr></table></figure>
+<p>即es6允许在对象之中只写属性名，不写属性值。此时属性值等于属性名所代表的变量</p>
+<p>同时方法也可以简写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var o = &#123;</span><br><span class="line">	method() &#123;</span><br><span class="line">		console.log(&quot;test&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">//等同于</span><br><span class="line">var o = &#123;</span><br><span class="line">	method: function() &#123;</span><br><span class="line">		console.log(&quot;test&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="属性名表达式"><a href="#属性名表达式" class="headerlink" title="属性名表达式"></a>属性名表达式</h2><p>es6允许你字面量定义对象时，用表达式作为对象的属性名，即把表达式放在方括号内</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">	[<span class="string">'a'</span> + <span class="string">'bc'</span>]: <span class="number">123</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>表达式还可以用于定义方法名</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">	[<span class="string">'a'</span> + <span class="string">'bc'</span>]() &#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'test'</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：属性名表达式与简洁表示法，不能同时使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="string">'bar'</span>;</span><br><span class="line"><span class="keyword">var</span> baz = &#123; [foo] &#125;; <span class="comment">//报错</span></span><br></pre></td></tr></table></figure>
+<h2 id="Object-is"><a href="#Object-is" class="headerlink" title="Object.is()"></a>Object.is()</h2><p>es5比较两个值是否相等，只有两个运算符，<code>==</code> 和 <code>===</code>，前者会自动转换数据类型，后者的NaN不等于自身，以及+0等于-0</p>
+<p>Object.is()比较两个值是否严格相等，与<code>===</code>基本一致，不同之处只有两处</p>
+<ul>
+<li>+0不等于-0</li>
+<li>NaN等于自身</li>
+</ul>
+<h2 id="Object-assign"><a href="#Object-assign" class="headerlink" title="Object.assign()"></a>Object.assign()</h2><p>Object.assign()方法用于对象的合并，将源对象的所有可枚举属性，复制到目标对象(target)    </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> target = &#123;a: <span class="number">1</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> source1 = &#123;b: <span class="number">2</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> source2 = &#123;c: <span class="number">3</span>&#125;;</span><br><span class="line"><span class="built_in">Object</span>.assign(target, source1, source2);</span><br></pre></td></tr></table></figure>
+<p>Object.assign方法的第一个参数是目标对象，后面的参数都是源对象。</p>
+<blockquote>
+<p>如果目标对象与源对象有同名属性，或多个源对象有同名属性，则后面的属性会覆盖前面的属性</p>
+</blockquote>
+<p>如果只有一个参数，Object.assign会直接返回该参数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;a: <span class="number">1</span>&#125;;</span><br><span class="line"><span class="built_in">Object</span>.assign(obj) === obj <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>如果该参数不是对象，Object.assign()，则会先转成对象，然后返回</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="built_in">Object</span>.assign(<span class="number">2</span>) <span class="comment">//object</span></span><br></pre></td></tr></table></figure>
+<p>由于undefined和null无法转化对象，所以如果它们作为参数，就会报错</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.assign(<span class="literal">undefined</span>); <span class="comment">//error</span></span><br><span class="line"><span class="built_in">Object</span>.assign(<span class="literal">null</span>); <span class="comment">//error</span></span><br></pre></td></tr></table></figure>
+<p>如果非对象参数出现在源对象的位置(即非首参数)，处理规则不同，这些参数都会被转化为对象，如果无法转化为对象，则会被跳过。即意味undefined和null不在首参数，就不会报错</p>
+<blockquote>
+<p>object.assign拷贝的属性是有限制的，只拷贝源对象的自身属性，不拷贝继承属性，也不拷贝不可枚举的属性</p>
+<p>Object.assign方法实行的是浅拷贝，而不是深拷贝，也就是说，如果源对象某个属性的值是对象，那么目标对象拷贝得到的是这个对象的引用</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123;a: &#123;b: <span class="number">1</span>&#125;&#125;;</span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;<span class="built_in">Object</span>.assign(&#123;&#125;, obj1)&#125;;</span><br><span class="line"></span><br><span class="line">obj1.a.b = <span class="number">2</span>;</span><br><span class="line">obj2.a.b <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+<p>上面代码中，源对象obj1的a属性的值是一个对象，Object.assign拷贝得到的是这个对象的引用。这个对象的任何变化，都会反映到目标对象上</p>
+<blockquote>
+<p>对于嵌套的对象，一旦遇到同名属性，Object.assign的处理方法是替换，而不是添加。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var target = &#123;a: &#123;b: 1, c: 2&#125;&#125;;</span><br><span class="line">var source = &#123;a: &#123;b: 3&#125;&#125;;</span><br><span class="line">Object.assign(target, source);</span><br><span class="line">target // &#123;a: &#123;b: 3&#125;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="常见用途"><a href="#常见用途" class="headerlink" title="常见用途"></a>常见用途</h2><ol>
+<li>为对象添加属性</li>
+<li>为对象添加方法</li>
+<li>克隆对象：不过采用这种方法克隆，只能克隆原始对象自身的值，不能克隆它继承的值</li>
+<li>合并多个对象</li>
+<li>为属性指定默认值</li>
+<li>属性的可枚举性</li>
+</ol>
+<h2 id="属性的可枚举性"><a href="#属性的可枚举性" class="headerlink" title="属性的可枚举性"></a>属性的可枚举性</h2><p>对象的每个属性都有一个描述对象，用来控制该属性的行为。<code>Object.getOwnPropertyDescriptor(obj, &#39;foo&#39;)</code> 可以获取该属性的描述对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;foo: <span class="number">123</span>&#125;;</span><br><span class="line"><span class="built_in">Object</span>.getOwnPropertyDescriptor(obj, <span class="string">'foo'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line">		value: <span class="number">123</span>,</span><br><span class="line">		writeable: <span class="literal">true</span>,</span><br><span class="line">		enumerable: <span class="literal">true</span>,</span><br><span class="line">		configurable: <span class="literal">true</span></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>描述对象的enumerable属性，称为”可枚举性”,如果该属性为false,就表示某些操作会忽略当前属性,即该操作遍历时不会返回该属性</p>
+<p>es5中有三个操作会忽略enumerable为false的属性</p>
+<ol>
+<li>for…in循环：只便利对象自身和继承的可枚举属性</li>
+<li>Object.keys()：返回对象自身的所有可枚举的属性的键名</li>
+<li>JSON.stringify()：只串行化对象自身的可枚举的属性</li>
+</ol>
+<p>es6中新增了两个操作，会忽略enumerable为false的属性</p>
+<ol>
+<li>Object.assign()：只拷贝对象自身的可枚举的属性</li>
+<li>Reflect.enumerate()：返回所有for…in循环会遍历的属性</li>
+</ol>
+<p>在这五个操作中，只有for…in和Reflect.enumerate()会返回继承的属性。</p>
+<blockquote>
+<p>引入enumerable的最初目的，就是让某些属性可以规避掉for…in操作。比如，对象原型的toString方法，以及数组的length属性，就是通过这种手段，不会被for…in遍历到</p>
+<p>所以，es6规定所有class的原型方法都是不可枚举的</p>
+<p>引入继承的属性会让问题复杂化，所有尽量使用Object.keys()来代替for…in循环</p>
+</blockquote>
+<h2 id="属性的遍历"><a href="#属性的遍历" class="headerlink" title="属性的遍历"></a>属性的遍历</h2><ol>
+<li>for…in</li>
+<li>object.keys(obj)</li>
+<li>Object</li>
+</ol>
+<h2 id="proto属性"><a href="#proto属性" class="headerlink" title="proto属性"></a><strong>proto</strong>属性</h2><ul>
+<li><strong>proto</strong>属性<br>用来读取或者设置当前对象的prototype对象<ol>
+<li>Object.setPrototypeOf()：写操作</li>
+<li>Object.getPrototypeOf()：读操作</li>
+<li>Object.create()：生成操作</li>
+</ol>
+</li>
+<li>Object.setPrototypeOf()</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//格式</span><br><span class="line">Object.setPrototypeOf(object, prototype)</span><br><span class="line">//等同于</span><br><span class="line">function (obj, proto) &#123;</span><br><span class="line">	obj.__proto__ = proto;</span><br><span class="line">	return obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Object.getPrototypeOf()<br>用于读取一个对象的prototype的对象</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Object.getPrototypeOf(obj);</span><br><span class="line">//等同于</span><br><span class="line">function (obj) &#123;</span><br><span class="line">	return obj.__proto__;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Object-values-和Object-keys"><a href="#Object-values-和Object-keys" class="headerlink" title="Object.values()和Object.keys()"></a>Object.values()和Object.keys()</h2><ul>
+<li>Object.keys(obj)返回一个数组，成员是参数对象自身的(不含继承的)所有可遍历(enumerable)属性的键名</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;foo: <span class="string">'bar'</span>, baz: <span class="number">42</span>&#125;;</span><br><span class="line"><span class="built_in">Object</span>.keys(); <span class="comment">//['foo', 'baz']</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Object.values(obj) 返回一个数组，成员是参数对象自身(不含继承)所有可遍历的属性的键值(未完全支持！！)</li>
+<li>Object.entries(obj) 返回一个数组，成员是参数对象自身(不含继承)的所有可遍历属性的键值对数组</li>
+</ul>
+<h2 id="对象的拓展运算符"><a href="#对象的拓展运算符" class="headerlink" title="对象的拓展运算符"></a>对象的拓展运算符</h2><p>es7提案，将Rest解构赋值/扩展运算符(…)引入对象</p>
+<ul>
+<li>Rest解构赋值<br>用于从一个对象取值，相当于将所有可遍历，但尚未读取的属性，分配到指定属性上。所有的键和它们的值，都会拷贝到新对象上面。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let &#123;x, y, ...z&#125; = &#123;x: 1, y: 2, a: 3, b: 4&#125;;</span><br><span class="line">x //1</span><br><span class="line">y //2</span><br><span class="line">z //&#123;a: 3, b: 4&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>由于Rest解构赋值要求等号右边是一个对象，如果等号右边是一个undefined或者null，就会报错，因为它们无法转化为对象</p>
+<p>Rest解构赋值必须是最后一个参数，否则会报错</p>
+<p>Rest解构赋值的拷贝是浅拷贝，即如果一个键的值是复合类型的值(数组，函数，对象)，那么Rest解构赋值拷贝的是这个值得引用，而不是这个值的副本</p>
+<p>Rest解构赋值不会拷贝继承自原型对象的属性</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> o1 = &#123;a: <span class="number">1</span>&#125;;</span><br><span class="line"><span class="keyword">let</span> o2 = &#123;b: <span class="number">2</span>&#125;;</span><br><span class="line">o2.__proto__ = o1;</span><br><span class="line"><span class="keyword">let</span> o3 = &#123;...o2&#125;;</span><br><span class="line">o3 <span class="comment">//&#123;b: 2&#125;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>扩展运算符  <strong>es7提案，es6中未支持</strong><br>扩展运算符(…)用于取出参数对象的所有可遍历属性，拷贝至当前对象中</p>
+<blockquote>
+<p>如果用户自定义的属性，放在拓展运算符后面，则拓展运算符内部的同名属性会被覆盖<br>如果拓展运算符的参数是null,或者undefined，则这两个值会被忽略，不会报错</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let emptyObj = &#123;...null, ...undefined&#125;; //不报错</span><br></pre></td></tr></table></figure>
+<h2 id="Object-getOwnPropertyDescriptor"><a href="#Object-getOwnPropertyDescriptor" class="headerlink" title="Object.getOwnPropertyDescriptor"></a>Object.getOwnPropertyDescriptor</h2><p>es5中，Object.getOwnPropertyDescriptor方法，就是返回某个对象属性的描述对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">let obj = &#123;</span><br><span class="line">	p: &apos;a&apos;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Object.getOwnPropertyDescriptor(obj, &apos;p&apos;);</span><br><span class="line">//Object &#123;</span><br><span class="line">    value: 1,</span><br><span class="line">    writable: true,</span><br><span class="line">    enumerable: true,</span><br><span class="line">    configurable: true</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="http://yoursite.com/2016/04/18/es6-object/" data-id="cin75rbkl0000k12s4jeb3hnm" class="article-share-link">Aktie</a><div class="tags"></div><div class="post-nav"><a href="/2016/04/15/hello-world/" class="next">Hello World</a></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Kategorien</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> Letzte</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/04/18/es6-object/">es6 object</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/hello-world/">Hello World</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Blogroll</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">yifeiCao's blog.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
